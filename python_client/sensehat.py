@@ -13,14 +13,30 @@ def run():
     client = pb.RegisterServiceStub(connection)
     # Instantiate the message struct that the RPC takes.
     message = pb.StatusRequest()
-    # Make a RPC call to the server with that message.
-    response = client.GetStatus(message)
-    # Print the server's response
-    counter = response.appData.counter
-    msg = "Attendants {} :-)".format(counter)
-    print(msg)
-    sense = SenseHat()
-    sense.show_message(msg, text_colour=[255, 0, 0])
+    while True:
+        # Make a RPC call to the server with that message.
+        response = client.GetStatus(message)
+        # Print the server's response
+        counter = response.appData.counter
+        msg = "Attendants {} :-)".format(counter)
+        print(msg)
+        sense = SenseHat()
+        sense.show_message(msg, text_colour=[255, 0, 0])
+
+        X = [255, 0, 0]  # Red
+        O = [255, 255, 255]  # White
+
+        smiley_face = [
+        O, O, X, O, O, X, O, O,
+        O, X, X, X, X, X, X, O,
+        O, O, X, O, O, X, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, X, O, O, O, O, X, O,
+        O, X, O, O, O, O, X, O,
+        O, O, X, X, X, X, O, O,
+        ]
+        sense.set_pixels(smiley_face)
 
 if __name__ == '__main__':
   run()
