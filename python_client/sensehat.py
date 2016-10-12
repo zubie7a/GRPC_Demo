@@ -29,8 +29,8 @@ def run():
         A = [0, 0, 128] # Blue
         Z = [255, 255, 64] #Beige
         gopher_face = [
-        A, X, X, X, A, X, X, X,
-        A, X, O, X, A, X, O, X,
+        A, X, O, O, A, X, O, O,
+        A, X, O, O, A, X, O, O,
         A, X, X, X, A, X, X, X,
         A, A, A, A, A, A, A, A,
         A, A, A, A, O, O, A, A,
