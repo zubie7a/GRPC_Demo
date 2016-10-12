@@ -24,20 +24,19 @@ def run():
         sense = SenseHat()
         sense.show_message(msg, text_colour=[255, 0, 0])
 
-        X = [255, 0, 0]  # Red
-        O = [0, 0, 0]  # White
-
-        smiley_face = [
-        O, O, O, O, O, O, O, O,
-        O, X, X, O, O, X, X, O,
-        O, X, X, O, O, X, X, O,
-        O, O, O, O, O, O, O, O,
-        O, O, O, O, O, O, O, O,
-        X, O, O, O, O, O, O, X,
-        O, X, O, O, O, O, X, O,
-        O, O, X, X, X, X, O, O,
+        X = [255, 255, 255]  # White
+        O = [0, 0, 0]  # Black
+        A = [42, 42, 42] # Gray
+        gopher_face = [
+        A, A, A, A, A, A, A, A,
+        A, X, O, A, A, X, O, A,
+        A, X, X, A, A, X, X, A,
+        A, A, A, A, A, A, A, A,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
+        X, X, X, X, X, X, X, X,
         ]
-        sense.set_pixels(smiley_face)
+        sense.set_pixels(gopher_face)
         time.sleep(3)
 
 if __name__ == '__main__':
