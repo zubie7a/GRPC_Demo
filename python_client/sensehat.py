@@ -30,11 +30,11 @@ def run():
         # Blue, Pink or Purple
         A = [0, 0, 0]
         if i == 0:
-            A = [0, 0, 128]
+            A = [0, 0, 128] # Blue
         elif i == 1:
-            A = [192, 64, 192]
+            A = [128, 64, 128] # Pink
         elif i == 2:
-            A = [192, 0, 192]
+            A = [64, 0, 64] # Purple
         Z = [255, 255, 64] #Beige
         gopher_face = [
         A, X, O, O, A, X, O, O,
