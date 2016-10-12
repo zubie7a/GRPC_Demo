@@ -1,6 +1,7 @@
 from __future__ import print_function
 import grpc
 import services_pb2 as pb
+from sense_hat import SenseHat
 
 
 def run():
@@ -16,7 +17,10 @@ def run():
     response = client.GetStatus(message)
     # Print the server's response
     counter = response.appData.counter
-    print("Count of attendants: {}".format(counter))
-  
+    msg = "Attendants {} :-)".format(counter)
+    print(msg)
+    sense = SenseHat()
+    sense.show_message(msg, text_colour=[255, 0, 0])
+
 if __name__ == '__main__':
   run()
