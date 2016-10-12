@@ -24,7 +24,6 @@ def run():
         print(msg)
         sense = SenseHat()
         sense.show_message(msg, text_colour=[255, 0, 0])
-        i = (i + 1) % 3
         X = [255, 255, 255]  # White
         O = [0, 0, 0]  # Black
         # Blue, Pink or Purple
@@ -34,7 +33,8 @@ def run():
         elif i == 1:
             A = [128, 64, 128] # Pink
         elif i == 2:
-            A = [64, 0, 64] # Purple
+            A = [32, 0, 32] # Purple
+        i = (i + 1) % 3
         Z = [255, 255, 64] #Beige
         gopher_face = [
         A, X, O, O, A, X, O, O,
