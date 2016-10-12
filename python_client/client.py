@@ -10,7 +10,7 @@ def run():
   # Create a GRPC client from that connection.
   client = services_pb2.SearchServiceStub(channel)
   # Make a GRPC call to the server.
-  response = client.Search(services_pb2.SearchRequest(query='Medellin DevOps'))
+  response = client.Search(services_pb2.SearchRequest(query='RaspPi DevOps'))
   # Print the server's response
   print("GRPC Response: " + response.reply)
 
