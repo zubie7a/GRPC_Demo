@@ -89,7 +89,6 @@ func registerAttendant(c *gin.Context) {
 	if attendant.FirstName == "" || attendant.LastName == "" ||
 		attendant.Code == "" {
 		msg := "Please fill all fields."
-		fmt.Println(msg)
 		c.JSON(http.StatusOK, msg)
 		return
 	}
@@ -101,7 +100,7 @@ func registerAttendant(c *gin.Context) {
 			// The entry for this code is the placeholder value, so register
 			// this person's name associating it to that code.
 			data.Attendants[attendant.Code] =
-				attendant.FirstName + attendant.LastName
+				fmt.Sprintf("%v %v", attendant.FirstName, attendant.LastName)
 			// Increase the attendant counter now that the code has been
 			// successfully used to register someone.
 			data.Counter++
