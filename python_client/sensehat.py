@@ -26,11 +26,11 @@ def run():
 
         X = [255, 255, 255]  # White
         O = [0, 0, 0]  # Black
-        A = [42, 42, 42] # Gray
+        A = [0, 0, 128] # Blue
         gopher_face = [
-        A, A, A, A, A, A, A, A,
-        A, X, O, A, A, X, O, A,
-        A, X, X, A, A, X, X, A,
+        A, X, X, X, A, X, X, X,
+        A, X, O, X, A, X, O, X,
+        A, X, X, X, A, X, X, X,
         A, A, A, A, A, A, A, A,
         O, O, O, O, O, O, O, O,
         O, O, O, O, O, O, O, O,
