@@ -15,7 +15,8 @@ def run():
     # Make a RPC call to the server with that message.
     response = client.GetStatus(message)
     # Print the server's response
-    print("GRPC Response: " + response.status)
+    counter = response.appData.counter
+    print("Count of attendants: {}".format(counter))
   
 if __name__ == '__main__':
   run()

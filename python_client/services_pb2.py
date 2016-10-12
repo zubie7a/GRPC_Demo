@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='services.proto',
   package='services',
   syntax='proto3',
-  serialized_pb=_b('\n\x0eservices.proto\x12\x08services\"\r\n\x0b\x43odeRequest\"\x1c\n\x0c\x43odeResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\"\x0f\n\rStatusRequest\" \n\x0eStatusResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\">\n\tAttendant\x12\x11\n\tfirstName\x18\x01 \x01(\t\x12\x10\n\x08lastName\x18\x02 \x01(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\"\x84\x01\n\x07\x41ppData\x12\x0f\n\x07\x63ounter\x18\x01 \x01(\x05\x12\x35\n\nattendants\x18\x02 \x03(\x0b\x32!.services.AppData.AttendantsEntry\x1a\x31\n\x0f\x41ttendantsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x32\x8f\x01\n\x0fRegisterService\x12@\n\tGetStatus\x12\x17.services.StatusRequest\x1a\x18.services.StatusResponse\"\x00\x12:\n\x07GetCode\x12\x15.services.CodeRequest\x1a\x16.services.CodeResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0eservices.proto\x12\x08services\"\r\n\x0b\x43odeRequest\"\x1c\n\x0c\x43odeResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\"\x0f\n\rStatusRequest\"4\n\x0eStatusResponse\x12\"\n\x07\x61ppData\x18\x01 \x01(\x0b\x32\x11.services.AppData\">\n\tAttendant\x12\x11\n\tfirstName\x18\x01 \x01(\t\x12\x10\n\x08lastName\x18\x02 \x01(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\"\x84\x01\n\x07\x41ppData\x12\x0f\n\x07\x63ounter\x18\x01 \x01(\x05\x12\x35\n\nattendants\x18\x02 \x03(\x0b\x32!.services.AppData.AttendantsEntry\x1a\x31\n\x0f\x41ttendantsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x32\x8f\x01\n\x0fRegisterService\x12@\n\tGetStatus\x12\x17.services.StatusRequest\x1a\x18.services.StatusResponse\"\x00\x12:\n\x07GetCode\x12\x15.services.CodeRequest\x1a\x16.services.CodeResponse\"\x00\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -113,9 +113,9 @@ _STATUSRESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='services.StatusResponse.status', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='appData', full_name='services.StatusResponse.appData', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -132,7 +132,7 @@ _STATUSRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=90,
-  serialized_end=122,
+  serialized_end=142,
 )
 
 
@@ -176,8 +176,8 @@ _ATTENDANT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=124,
-  serialized_end=186,
+  serialized_start=144,
+  serialized_end=206,
 )
 
 
@@ -214,8 +214,8 @@ _APPDATA_ATTENDANTSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=272,
-  serialized_end=321,
+  serialized_start=292,
+  serialized_end=341,
 )
 
 _APPDATA = _descriptor.Descriptor(
@@ -251,10 +251,11 @@ _APPDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=189,
-  serialized_end=321,
+  serialized_start=209,
+  serialized_end=341,
 )
 
+_STATUSRESPONSE.fields_by_name['appData'].message_type = _APPDATA
 _APPDATA_ATTENDANTSENTRY.containing_type = _APPDATA
 _APPDATA.fields_by_name['attendants'].message_type = _APPDATA_ATTENDANTSENTRY
 DESCRIPTOR.message_types_by_name['CodeRequest'] = _CODEREQUEST
