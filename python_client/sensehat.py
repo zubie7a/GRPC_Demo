@@ -14,6 +14,7 @@ def run():
     client = pb.RegisterServiceStub(connection)
     # Instantiate the message struct that the RPC takes.
     message = pb.StatusRequest()
+    i = 0
     while True:
         # Make a RPC call to the server with that message.
         response = client.GetStatus(message)
@@ -23,10 +24,17 @@ def run():
         print(msg)
         sense = SenseHat()
         sense.show_message(msg, text_colour=[255, 0, 0])
-
+        i = (i + 1) % 3
         X = [255, 255, 255]  # White
         O = [0, 0, 0]  # Black
-        A = [0, 0, 128] # Blue
+        # Blue, Pink or Purple
+        A = []
+        if(i == 0)
+            A = [0, 0, 128]
+        if(i == 1)
+            A = [192, 64, 192]
+        if(i == 2)
+            A = [192, 0, 192]
         Z = [255, 255, 64] #Beige
         gopher_face = [
         A, X, O, O, A, X, O, O,

@@ -56,17 +56,17 @@ message StatusResponse {
     AppData appData = 1;
 }
 
-// The struct that will define what an attendant is.
-message Attendant {
-    string firstName = 1;
-    string lastName = 2;
-    string code = 3;
-}
-
 // The struct that will define the basic structure of the application data.
 // It will be a counter of attendants, and a map between their unique codes
 // and their name.
 message AppData {
     int32 counter = 1;
     map<string, string> attendants = 2;
+}
+
+// The struct that will define what an attendant is.
+message Attendant {
+    string firstName = 1;
+    string lastName = 2;
+    string code = 3;
 }
