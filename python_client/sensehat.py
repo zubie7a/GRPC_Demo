@@ -32,9 +32,10 @@ def run():
         A, X, O, A, A, X, O, A,
         A, X, X, A, A, X, X, A,
         A, A, A, A, A, A, A, A,
-        X, X, X, X, X, X, X, X,
-        X, X, X, X, X, X, X, X,
-        X, X, X, X, X, X, X, X,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
         ]
         sense.set_pixels(gopher_face)
         time.sleep(3)
