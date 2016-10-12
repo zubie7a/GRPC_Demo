@@ -20,7 +20,7 @@ def run():
         response = client.GetStatus(message)
         # Print the server's response
         counter = response.appData.counter
-        msg = "Attendants {} :-)".format(counter)
+        msg = "Attendants: {} :-)".format(counter)
         print(msg)
         sense = SenseHat()
         sense.show_message(msg, text_colour=[255, 0, 0])
