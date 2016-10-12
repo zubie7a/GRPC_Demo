@@ -28,12 +28,12 @@ def run():
         X = [255, 255, 255]  # White
         O = [0, 0, 0]  # Black
         # Blue, Pink or Purple
-        A = []
-        if(i == 0)
+        A = [0, 0, 0]
+        if i == 0:
             A = [0, 0, 128]
-        if(i == 1)
+        elif i == 1:
             A = [192, 64, 192]
-        if(i == 2)
+        elif i == 2:
             A = [192, 0, 192]
         Z = [255, 255, 64] #Beige
         gopher_face = [
