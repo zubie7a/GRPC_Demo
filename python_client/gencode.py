@@ -34,9 +34,9 @@ from grpc.tools import protoc
 protoc.main(
     (
 	'',
-	'-I../vendor/helloworld',
+	'-I../vendor/protos',
 	'--python_out=.',
 	'--grpc_python_out=.',
-	'../vendor/helloworld/helloworld.proto',
+	'../vendor/protos/services.proto',
     )
 )

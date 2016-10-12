@@ -37,13 +37,14 @@ import (
 	"log"
 	"os"
 
+	pb "protos"
+
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	pb "helloworld"
 )
 
 const (
-	address     = "52.34.52.17:50001"
+	address     = "localhost:50001"
 	defaultName = "world"
 )
 
@@ -54,16 +55,16 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewGreeterClient(conn)
+	c := pb.NewSearchServiceClient(conn)
 
 	// Contact the server and print out its response.
 	name := defaultName
 	if len(os.Args) > 1 {
 		name = os.Args[1]
 	}
-	r, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: name})
+	r, err := c.Search(context.Background(), &pb.SearchRequest{Query: name})
 	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+		log.Fatalf("Could not search: %v", err)
 	}
-	log.Printf("Greeting: %s", r.Message)
+	log.Printf("Response: %s", r.Reply)
 }

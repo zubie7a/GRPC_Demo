@@ -6,23 +6,28 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"time"
 
 	"golang.org/x/net/context"
 
 	"google.golang.org/grpc"
 
-	pb "helloworld"
+	pb "protos"
 
 	"github.com/gin-gonic/gin"
 )
+
+// A global counter that will be increased first with a timer and then via RPC calls.
+var global int
 
 // server is used to implement helloworld.GreeterServer.
 type server struct{}
 
 // SayHello implements helloworld.GreeterServer
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	fmt.Println("WAT")
-	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+func (s *server) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchResponse, error) {
+	fmt.Println("Incoming:", in.Query)
+	res := fmt.Sprintf("Hello %s, the counter is at %d", in.Query, global)
+	return &pb.SearchResponse{Reply: res}, nil
 }
 
 func main() {
@@ -50,14 +55,20 @@ func main() {
 	// Listen on this port with TCP.
 	lis, err := net.Listen("tcp", grpcPort)
 	if err != nil {
-		fmt.Printf("failed to listen: %v\n", err)
+		fmt.Printf("Failed to listen: %v\n", err)
 	}
 	// Create a new generic GRPC server.
 	s := grpc.NewServer()
 	// Register the services defined in the proto to this GRPC server.
-	pb.RegisterGreeterServer(s, &server{})
+	pb.RegisterSearchServiceServer(s, &server{})
 
 	c := make(chan int)
+	go func() {
+		for {
+			time.Sleep(1 * time.Second)
+			global++
+		}
+	}()
 	go func() {
 		s.Serve(lis)
 	}()
