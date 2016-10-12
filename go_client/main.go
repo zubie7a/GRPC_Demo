@@ -2,30 +2,30 @@ package main
 
 import (
 	"log"
-
 	pb "protos"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
 
-const (
-	address = "52.34.52.17:50001"
-)
-
 func main() {
-	// Set up a connection to the server.
+	// The address of the GRPC Server.
+	address := "52.34.52.17:50001"
+	// Create a connection to that address..
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewSearchServiceClient(conn)
-
-	// Contact the server and print out its response.
-	r, err := c.Search(context.Background(), &pb.SearchRequest{Query: "Gopher DevOps"})
+	// Create a GRPC Client from that connection.
+	client := pb.NewSearchServiceClient(conn)
+	// Instantiate the message struct that the RPC takes.
+	message := &pb.SearchRequest{Query: "Gopher DevOps"}
+	// Make a RPC call to the server with that message.
+	r, err := client.Search(context.Background(), message)
 	if err != nil {
 		log.Fatalf("Could not search: %v", err)
 	}
+	// Print the server's response.
 	log.Printf("GRPC Response: %s", r.Reply)
 }
