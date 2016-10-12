@@ -8,13 +8,12 @@ def run():
   # Create a connection to that address.
   channel = grpc.insecure_channel(address)
   # Create a GRPC client from that connection.
-  client = helloworld_pb2.SearchServiceStub(channel)
+  client = helloworld_pb2.GreeterStub(channel)
   # Make a GRPC call to the server.
-  response = client.Search(helloworld_pb2.SearchRequest(query='Medellin DevOps'))
+  response = client.SayHello(helloworld_pb2.HelloRequest(name='Medellin DevOps'))
   # Print the server's response
   print("GRPC Response: " + response.message)
 
 if __name__ == '__main__':
   run()
-
-
+  
