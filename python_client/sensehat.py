@@ -29,13 +29,14 @@ def run():
         # Blue, Pink or Purple
         A = [0, 0, 0]
         if i == 0:
-            A = [0, 0, 128] # Blue
+            A = [0, 0, 128] # Blue Gopher
         elif i == 1:
-            A = [128, 64, 128] # Pink
+            A = [128, 64, 128] # Pink Gopher
         elif i == 2:
-            A = [64, 0, 64] # Purple
+            A = [64, 0, 64] # Purple Gopher
         i = (i + 1) % 3
         Z = [255, 255, 64] #Beige
+        R = [255, 0, 0] # Red
         gopher_face = [
         A, X, O, O, A, X, O, O,
         A, X, O, O, A, X, O, O,
@@ -47,7 +48,19 @@ def run():
         A, A, A, A, X, X, A, A,
         ]
         sense.set_pixels(gopher_face)
-        time.sleep(7)
+        time.sleep(3)
+        heart = [
+        O, R, R, O, R, R, O, O,
+        R, R, R, R, R, R, R, O,
+        R, R, R, R, R, R, R, O,
+        R, R, R, R, R, R, R, O,
+        R, R, R, R, R, R, R, O,
+        O, R, R, R, R, R, O, O,
+        O, O, R, R, R, O, O, O,
+        O, O, O, R, O, O, O, O,
+        ]
+        sense.set_pixels(heart)
+        time.sleep(3)
 
 if __name__ == '__main__':
   run()
