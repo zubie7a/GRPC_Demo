@@ -39,7 +39,7 @@ def run():
         A, A, A, A, X, X, A, A,
         ]
         sense.set_pixels(gopher_face)
-        time.sleep(3)
+        time.sleep(7)
 
 if __name__ == '__main__':
   run()
