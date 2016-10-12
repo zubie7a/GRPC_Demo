@@ -1,5 +1,6 @@
 from __future__ import print_function
 import grpc
+import time
 import services_pb2 as pb
 from sense_hat import SenseHat
 
@@ -24,19 +25,20 @@ def run():
         sense.show_message(msg, text_colour=[255, 0, 0])
 
         X = [255, 0, 0]  # Red
-        O = [255, 255, 255]  # White
+        O = [0, 0, 0]  # White
 
         smiley_face = [
-        O, O, X, O, O, X, O, O,
-        O, X, X, X, X, X, X, O,
-        O, O, X, O, O, X, O, O,
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, X, X, O, O, X, X, O,
         O, O, O, O, O, O, O, O,
         O, O, O, O, O, O, O, O,
-        O, X, O, O, O, O, X, O,
+        X, O, O, O, O, O, O, X,
         O, X, O, O, O, O, X, O,
         O, O, X, X, X, X, O, O,
         ]
         sense.set_pixels(smiley_face)
+        time.sleep(3)
 
 if __name__ == '__main__':
   run()
