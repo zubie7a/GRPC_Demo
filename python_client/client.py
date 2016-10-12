@@ -4,7 +4,7 @@ import services_pb2
 
 def run():
   # The address of the GRPC Server.
-  address = 'localhost:50001'
+  address = '52.34.52.17:50001'
   # Create a connection to that address.
   channel = grpc.insecure_channel(address)
   # Create a GRPC client from that connection.
