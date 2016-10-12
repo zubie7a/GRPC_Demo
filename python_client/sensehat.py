@@ -33,7 +33,7 @@ def run():
         elif i == 1:
             A = [128, 64, 128] # Pink
         elif i == 2:
-            A = [32, 0, 32] # Purple
+            A = [64, 0, 64] # Purple
         i = (i + 1) % 3
         Z = [255, 255, 64] #Beige
         gopher_face = [
