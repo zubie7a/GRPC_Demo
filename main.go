@@ -26,7 +26,7 @@ import (
 // better to use storage :-) The good thing about using a proto defined struct
 // is that this data can be sent via GRPC to a client or whatever and it will
 // maintain its nice structure.
-var data *pb.AppData
+var appData *pb.AppData
 
 // GetCode generates a one-time use code, which will be given to an attendant
 // and which is needed for successfully registering. It is a random 32bit int,
@@ -42,8 +42,8 @@ func (s *server) GetCode(ctx context.Context,
 		// the unique identifier for an attendant in the application logic
 		// (not attendant name itself).
 		code = fmt.Sprintf("%d", rand.Int31n(1<<31-1))
-		if _, ok := data.Attendants[code]; !ok {
-			data.Attendants[code] = ""
+		if _, ok := appData.Attendants[code]; !ok {
+			appData.Attendants[code] = ""
 			break
 		}
 	}
@@ -59,14 +59,13 @@ type server struct{}
 // a visual counter of attendants and many more things about the status :-)
 func (s *server) GetStatus(ctx context.Context,
 	in *pb.StatusRequest) (*pb.StatusResponse, error) {
-	// Code is unimplemented :-()
-	return &pb.StatusResponse{Status: "unimplemented"}, nil
+	return &pb.StatusResponse{AppData: appData}, nil
 }
 
 // Basic function for serving the index template on a "/" GET request, binded
 // at main runtime.
 func serveHomepage(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.tmpl.html", data)
+	c.HTML(http.StatusOK, "index.tmpl.html", appData)
 }
 
 // Function for registering an attentant, on the "/register" POST request,
@@ -93,17 +92,17 @@ func registerAttendant(c *gin.Context) {
 		return
 	}
 	// If there's already an entry for that code in the attendants list.
-	if name, ok := data.Attendants[attendant.Code]; ok {
+	if name, ok := appData.Attendants[attendant.Code]; ok {
 		// Check if the code has already been used, e.g. nothing is assigned
 		// to it, an empty string, and the .
 		if name == "" {
 			// The entry for this code is the placeholder value, so register
 			// this person's name associating it to that code.
-			data.Attendants[attendant.Code] =
+			appData.Attendants[attendant.Code] =
 				fmt.Sprintf("%v %v", attendant.FirstName, attendant.LastName)
 			// Increase the attendant counter now that the code has been
 			// successfully used to register someone.
-			data.Counter++
+			appData.Counter++
 			msg := fmt.Sprintf("Successfully registered user with code %v",
 				attendant.Code)
 			fmt.Println(msg)
@@ -138,7 +137,7 @@ func main() {
 	// hold the Attendants' status and also be passed to the templates to fill
 	// in the application web pages when making some GET/POST requests, or to
 	// some remote clients (like our RaspPi) via GRPC.
-	data = initializeAppData()
+	appData = initializeAppData()
 	// Initialize the random seed with the nanoseconds since epoch. This will
 	// be used to generate the attendants one-time codes.
 	rand.Seed(time.Now().UnixNano())

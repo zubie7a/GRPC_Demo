@@ -53,7 +53,7 @@ message StatusRequest {
 
 // The response message containing the status.
 message StatusResponse {
-    string status = 1;
+    AppData appData = 1;
 }
 
 // The struct that will define what an attendant is.

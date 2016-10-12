@@ -24,7 +24,7 @@ func main() {
 	// Make a RPC call to the server with that message.
 	response, err := client.GetCode(context.Background(), message)
 	if err != nil {
-		log.Fatalf("Could not search: %v", err)
+		log.Fatalf("Could not get code: %v", err)
 	}
 	// Print the server's response.
 	log.Printf("GRPC Response: %v", response.Code)

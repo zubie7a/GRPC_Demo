@@ -8,13 +8,13 @@ def run():
   # Create a connection to that address.
   connection = grpc.insecure_channel(address)
   # Create a GRPC Client from that connection.
-  client = pb.SearchServiceStub(connection)
+  client = pb.RegisterServiceStub(connection)
   # Instantiate the message struct that the RPC takes.
-  message = pb.SearchRequest(query="RaspPi DevOps")
+  message = pb.CodeRequest()
   # Make a RPC call to the server with that message.
-  response = client.Search(message)
+  response = client.GetCode(message)
   # Print the server's response
-  print("GRPC Response: " + response.reply)
+  print("GRPC Response: " + response.code)
 
 if __name__ == '__main__':
   run()
