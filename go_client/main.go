@@ -18,14 +18,14 @@ func main() {
 	}
 	defer connection.Close()
 	// Create a GRPC Client from that connection.
-	client := pb.NewSearchServiceClient(connection)
+	client := pb.NewRegisterServiceClient(connection)
 	// Instantiate the message struct that the RPC takes.
-	message := &pb.SearchRequest{Query: "Gopher DevOps"}
+	message := &pb.CodeRequest{}
 	// Make a RPC call to the server with that message.
-	response, err := client.Search(context.Background(), message)
+	response, err := client.GetCode(context.Background(), message)
 	if err != nil {
 		log.Fatalf("Could not search: %v", err)
 	}
 	// Print the server's response.
-	log.Printf("GRPC Response: %s", response.Reply)
+	log.Printf("GRPC Response: %v", response.Code)
 }

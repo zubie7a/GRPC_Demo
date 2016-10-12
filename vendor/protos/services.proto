@@ -32,17 +32,41 @@ syntax = "proto3";
 package services;
 
 // The greeting service definition.
-service SearchService {
-  // Sends a greeting
-  rpc Search (SearchRequest) returns (SearchResponse) {}
+service RegisterService {
+    // Sends a greeting
+    rpc GetStatus (StatusRequest) returns (StatusResponse) {}
+    rpc GetCode (CodeRequest) returns (CodeResponse) {}
 }
 
-// The request message containing the user's name.
-message SearchRequest {
-  string query = 1;
+// The request message for requesting a code, contains nothing.
+message CodeRequest{
 }
 
-// The response message containing the greetings
-message SearchResponse {
-  string reply = 1;
+// The response message containing the code.
+message CodeResponse {
+    string code = 1;
+}
+
+// The request message for requesting the status.
+message StatusRequest {
+}
+
+// The response message containing the status.
+message StatusResponse {
+    string status = 1;
+}
+
+// The struct that will define what an attendant is.
+message Attendant {
+    string firstName = 1;
+    string lastName = 2;
+    string code = 3;
+}
+
+// The struct that will define the basic structure of the application data.
+// It will be a counter of attendants, and a map between their unique codes
+// and their name.
+message AppData {
+    int32 counter = 1;
+    map<string, string> attendants = 2;
 }
