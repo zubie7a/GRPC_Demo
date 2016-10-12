@@ -27,15 +27,16 @@ def run():
         X = [255, 255, 255]  # White
         O = [0, 0, 0]  # Black
         A = [0, 0, 128] # Blue
+        Z = [255, 255, 64] #Beige
         gopher_face = [
         A, X, X, X, A, X, X, X,
         A, X, O, X, A, X, O, X,
         A, X, X, X, A, X, X, X,
         A, A, A, A, A, A, A, A,
-        O, O, O, O, O, O, O, O,
-        O, O, O, O, O, O, O, O,
-        O, O, O, O, O, O, O, O,
-        O, O, O, O, O, O, O, O,
+        A, A, A, A, O, O, A, A,
+        A, A, A, Z, Z, Z, Z, A,
+        A, A, A, Z, X, X, Z, A,
+        A, A, A, A, X, X, A, A,
         ]
         sense.set_pixels(gopher_face)
         time.sleep(3)
